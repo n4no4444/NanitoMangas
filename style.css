@@ -1,0 +1,126 @@
+/* css/styles.css */
+
+/* ==========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+    --manga-yellow: #ffc107;
+    --manga-dark: #121212;
+    --manga-gray: #212529;
+    --manga-accent: #ff9800;
+    --manga-success: #198754;
+    --transition-fast: 0.25s ease-in-out;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: var(--manga-gray);
+}
+
+/* ==========================================
+   2. MENÚ DE NAVEGACIÓN Y HEADER
+   ========================================== */
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+/* Animación sutil para los enlaces del menú */
+.navbar-nav .nav-link {
+    transition: color var(--transition-fast);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--manga-yellow) !important;
+}
+
+/* Contador del carrito en el Navbar */
+#cart-count {
+    font-size: 0.85rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* ==========================================
+   3. TARJETAS DE MANGAS (CATÁLOGO Y DESTACADOS)
+   ========================================== */
+.card {
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Efecto de elevación (hover) al pasar el cursor sobre un manga */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Ajuste uniforme para las imágenes de portada */
+.card-img-top {
+    height: 340px;
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 10px;
+    transition: transform var(--transition-fast);
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.03);
+}
+
+/* Títulos de los mangas */
+.card-title {
+    color: #111;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   4. FORMULARIOS Y ESTADOS DE VALIDACIÓN
+   ========================================== */
+/* Foco personalizado en campos de texto e insumos */
+.form-control:focus, 
+.form-select:focus {
+    border-color: var(--manga-yellow);
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+/* Feedback visual de errores/éxito para validaciones JS */
+.form-control.is-invalid, 
+.form-select.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: none;
+}
+
+.form-control.is-valid, 
+.form-select.is-valid {
+    border-color: var(--manga-success) !important;
+}
+
+.invalid-feedback {
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+/* ==========================================
+   5. CARRITO Y RESUMEN DE COMPRA
+   ========================================== */
+.list-group-item {
+    border-radius: 8px !important;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* ==========================================
+   6. RESPONSIVIDAD Y TWEAKS MÓVILES
+   ========================================== */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 280px;
+    }
+    
+    .display-4 {
+        font-size: 2.2rem;
+    }
+}

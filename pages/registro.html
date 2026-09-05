@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanito Mangas - Registro de Usuario</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="index.html"> NanitoMangas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="carrito.html" class="btn btn-outline-warning">
+                        Carrito (<span id="cart-count">0</span>)
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light ms-2">Iniciar Sesión</a>
+                    <a href="registro.html" class="btn btn-warning fw-bold">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FORMULARIO DE REGISTRO -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7">
+                <div class="card shadow border-0 rounded-3">
+                    <div class="card-body p-4 p-md-5">
+                        
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold h3">Crea tu cuenta en NanitoMangas</h2>
+                            <p class="text-muted small">Únete a nuestra comunidad y haz seguimiento a tus pedidos</p>
+                        </div>
+
+                        <form id="form-registro" novalidate>
+                            
+                            <!-- RUN (RUT) -->
+                            <div class="mb-3">
+                                <label for="run" class="form-label fw-semibold">RUN / RUT</label>
+                                <input type="text" class="form-control" id="run" placeholder="Ej: 19011022K (sin puntos ni guion)" required>
+                                <div class="invalid-feedback" id="run-error">
+                                    RUN inválido. Debe tener entre 7 y 9 dígitos con Dígito Verificador válido (Módulo 11), sin puntos ni guion.
+                                </div>
+                            </div>
+
+                            <!-- Nombre y Apellido -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label for="nombre" class="form-label fw-semibold">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Juan" required>
+                                    <div class="invalid-feedback">El nombre es obligatorio.</div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="apellido" class="form-label fw-semibold">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" placeholder="Pérez" required>
+                                    <div class="invalid-feedback">El apellido es obligatorio.</div>
+                                </div>
+                            </div>
+
+                            <!-- Correo Electrónico -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" placeholder="usuario@duoc.cl" required>
+                                <div class="invalid-feedback" id="email-error">
+                                    Sólo se permiten correos finalizados en @duoc.cl, @profesor.duoc.cl o @gmail.com (máx. 100 caracteres).
+                                </div>
+                            </div>
+
+                            <!-- Región y Comuna (Dinamismo con regiones.js) -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label for="region" class="form-label fw-semibold">Región</label>
+                                    <select class="form-select" id="region" required>
+                                        <!-- Se carga desde regiones.js -->
+                                    </select>
+                                    <div class="invalid-feedback">Selecciona una región.</div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="comuna" class="form-label fw-semibold">Comuna</label>
+                                    <select class="form-select" id="comuna" required disabled>
+                                        <option value="">-- Seleccione primero una Región --</option>
+                                    </select>
+                                    <div class="invalid-feedback">Selecciona una comuna.</div>
+                                </div>
+                            </div>
+
+                            <!-- Dirección -->
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label fw-semibold">Dirección de Envío</label>
+                                <input type="text" class="form-control" id="direccion" placeholder="Av. Siempre Viva 123" required>
+                                <div class="invalid-feedback">Ingresa tu dirección de envío.</div>
+                            </div>
+
+                            <!-- Contraseña y Confirmación -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <label for="password" class="form-label fw-semibold">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                    <div class="invalid-feedback" id="password-error">
+                                        Debe tener de 4 a 10 caracteres con al menos un símbolo especial.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="confirmPassword" class="form-label fw-semibold">Confirmar Contraseña</label>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" required>
+                                    <div class="invalid-feedback" id="confirm-error">
+                                        Las contraseñas no coinciden.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Términos y Condiciones -->
+                            <div class="form-check mb-4">
+                                <input type="checkbox" class="form-check-input" id="terminos" required>
+                                <label class="form-check-label small" for="terminos">
+                                    Acepto los términos y condiciones de compra de NanitoMangas.
+                                </label>
+                                <div class="invalid-feedback">Debes aceptar los términos para registrarte.</div>
+                            </div>
+
+                            <!-- Botón Registrarse -->
+                            <button type="submit" class="btn btn-warning w-100 fw-bold py-2 mb-3">Crear Cuenta</button>
+
+                        </form>
+
+                        <div class="text-center pt-2 border-top">
+                            <span class="small text-muted">¿Ya tienes una cuenta? </span>
+                            <a href="login.html" class="small fw-bold text-decoration-none text-dark">Inicia sesión aquí</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white pt-4 pb-3 mt-auto border-top border-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h5 class="text-warning">NanitoMangas</h5>
+                    <p class="small text-secondary">Tu tienda especializada en cómics japoneses, tomos únicos y ediciones de colección en Chile.</p>
+                </div>
+                <div class="col-md-6 mb-3 text-md-end">
+                    <a href="contacto.html" class="text-white text-decoration-none me-3">Contacto</a>
+                    <a href="nosotros.html" class="text-white text-decoration-none me-3">Nosotros</a>
+                    
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="text-center small text-secondary mb-0">&copy; 2026 NanitoMangas - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts Bootstrap y Propios -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/logica.js"></script>
+    <script src="js/regiones.js"></script>
+    <script src="js/validaciones.js"></script>
+
+    <!-- Integración y Control del Formulario -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Cargar select de Regiones dinámicamente al iniciar
+            cargarRegiones("region");
+
+            // Listener para actualizar Comunas cuando cambie la Región
+            const regionSelect = document.getElementById("region");
+            regionSelect.addEventListener("change", () => {
+                const comunaSelect = document.getElementById("comuna");
+                comunaSelect.disabled = !regionSelect.value;
+                actualizarComunas("region", "comuna");
+            });
+        });
+
+        // Evento de Submit y Validaciones
+        document.getElementById("form-registro").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const run = document.getElementById("run");
+            const nombre = document.getElementById("nombre");
+            const apellido = document.getElementById("apellido");
+            const email = document.getElementById("email");
+            const region = document.getElementById("region");
+            const comuna = document.getElementById("comuna");
+            const direccion = document.getElementById("direccion");
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+            const terminos = document.getElementById("terminos");
+
+            let esValido = true;
+
+            // Limpiar estados previos de Bootstrap
+            [run, nombre, apellido, email, region, comuna, direccion, password, confirmPassword, terminos].forEach(input => {
+                input.classList.remove("is-invalid", "is-valid");
+            });
+
+            // 1. Validar RUN (Módulo 11 chileno)
+            if (!validarRUN(run.value.trim())) {
+                run.classList.add("is-invalid");
+                esValido = false;
+            } else {
+                run.classList.add("is-valid");
+            }
+
+            // 2. Validar Nombre y Apellido
+            if (!nombre.value.trim()) { nombre.classList.add("is-invalid"); esValido = false; } else { nombre.classList.add("is-valid"); }
+            if (!apellido.value.trim()) { apellido.classList.add("is-invalid"); esValido = false; } else { apellido.classList.add("is-valid"); }
+
+            // 3. Validar Correo Electrónico con filtro de dominios
+            if (!validarCorreoRegistro(email.value.trim())) {
+                email.classList.add("is-invalid");
+                esValido = false;
+            } else {
+                email.classList.add("is-valid");
+            }
+
+            // 4. Validar Región, Comuna y Dirección
+            if (!region.value) { region.classList.add("is-invalid"); esValido = false; } else { region.classList.add("is-valid"); }
+            if (!comuna.value) { comuna.classList.add("is-invalid"); esValido = false; } else { comuna.classList.add("is-valid"); }
+            if (!direccion.value.trim()) { direccion.classList.add("is-invalid"); esValido = false; } else { direccion.classList.add("is-valid"); }
+
+            // 5. Validar Contraseña (4-10 caracteres, símbolo especial)
+            if (!validarPassword(password.value)) {
+                password.classList.add("is-invalid");
+                esValido = false;
+            } else {
+                password.classList.add("is-valid");
+            }
+
+            // 6. Validar que las contraseñas coincidan
+            if (password.value !== confirmPassword.value || !confirmPassword.value) {
+                confirmPassword.classList.add("is-invalid");
+                esValido = false;
+            } else if (esValido) {
+                confirmPassword.classList.add("is-valid");
+            }
+
+            // 7. Validar Términos
+            if (!terminos.checked) {
+                terminos.classList.add("is-invalid");
+                esValido = false;
+            } else {
+                terminos.classList.add("is-valid");
+            }
+
+            // Si pasa todas las reglas de negocio
+            if (esValido) {
+                const nuevoUsuario = {
+                    run: run.value.trim().toUpperCase(),
+                    nombre: nombre.value.trim(),
+                    apellido: apellido.value.trim(),
+                    email: email.value.trim(),
+                    region: region.value,
+                    comuna: comuna.value,
+                    direccion: direccion.value.trim(),
+                    rol: "Cliente" // Rol asignado por defecto
+                };
+
+                // Guardar en arreglo de usuarios simulado en localStorage
+                let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+                usuarios.push(nuevoUsuario);
+                localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+                alert("¡Cuenta creada exitosamente en NanitoMangas! Redirigiendo al inicio de sesión...");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>
